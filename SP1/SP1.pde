@@ -2,6 +2,25 @@
 //-Påbegyndt projektet
 
 void setup() {
+  //Billeder af flag.
+  PImage russia;
+  russia=loadImage("
+  PImage saudiArabia;
+  PImage egypt;
+  PImage uruguay;
+  PImage france;
+  PImage australia;
+  PImage peru;
+  PImage denmark;
+  PImage portugal;
+  PImage spain;
+  PImage morocco;
+  PImage iran;
+  PImage argentina;
+  PImage iceland;
+  PImage croatia;
+  PImage nigeria;
+  
   size(1185, 500);
   background(#222222);
 
@@ -15,7 +34,6 @@ void draw() {
   //Erklæringer og initialiseringer.
   int blueText=#62D1F0;
   int yellowText=#FCFD55;
-  int wantedNumberOfWhiteBanners=16;
   noStroke();
 
   //Blå baggrund venstre.
@@ -87,6 +105,8 @@ void draw() {
   rect(bannersBottomRightX, bannersBottomRightY, bannersWidth, bannersHeight);
   bannersBottomRightY+=height*0.1;
   currentBottomRightBanners++;
+  
+  
   
   
   
