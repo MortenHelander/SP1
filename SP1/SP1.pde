@@ -1,14 +1,10 @@
 //04.05.25
 //-Påbegyndt projektet
 
-int blueText=#62D1F0;
-int yellowText=#FCFD55;
-
-
 void setup() {
   size(1185, 500);
-  background(0);
-  
+  background(#222222);
+
   PFont font;
   font=loadFont("Calibri-Bold-48.vlw");
   textFont(font);
@@ -16,6 +12,10 @@ void setup() {
 
 
 void draw() {
+  //Erklæringer og initialiseringer.
+  int blueText=#62D1F0;
+  int yellowText=#FCFD55;
+  int wantedNumberOfWhiteBanners=16;
   noStroke();
 
   //Blå baggrund venstre.
@@ -35,11 +35,65 @@ void draw() {
   textSize(27);
   text("GROUP A", width*0.21, height*0.05);
   text("GROUP C", width*0.7, height*0.05);
-  
+
   //Nederste gule overskrift.
   fill(yellowText);
   text("GROUP B", width*0.21, height*0.55);
   text("GROUP D", width*0.7, height*0.55);
   
+  //Hvide bannere top venstre.
+  int currentTopLeftBanners=0;
+  int wantedTopLeftBanners=4;
+  float bannersTopLeftX=width/50;
+  float bannersTopLeftY=height*0.072;
+  float bannersWidth=width*0.468;
+  float bannersHeight=height*0.085;
+  fill(255);
+
+  while(currentTopLeftBanners<wantedTopLeftBanners){
+  rect(bannersTopLeftX, bannersTopLeftY, bannersWidth, bannersHeight);
+  bannersTopLeftY+=height*0.1;
+  currentTopLeftBanners++;
   
+  //Hvide bannere top højre.
+  float currentTopRightBanners=0;
+  float wantedTopRightBanners=4;
+  float bannersTopRightX=width*0.52;
+  float bannersTopRightY=height*0.072;
+  
+  while(currentTopRightBanners<wantedTopRightBanners){
+  rect(bannersTopRightX, bannersTopRightY, bannersWidth, bannersHeight);
+  bannersTopRightY+=height*0.1;
+  currentTopRightBanners++;
+  
+  //Hvide bannere ned venstre.
+  float currentBottomLeftBanners=0;
+  float wantedBottomLeftBanners=4;
+  float bannersBottomLefttX=width/50;
+  float bannersBottomLeftY=height*0.586;
+  
+  while(currentBottomLeftBanners<wantedBottomLeftBanners){
+  rect(bannersBottomLefttX, bannersBottomLeftY, bannersWidth, bannersHeight);
+  bannersBottomLeftY+=height*0.1;
+  currentBottomLeftBanners++;
+  
+  //Hvide bannere ned højre.
+  float currentBottomRightBanners=0;
+  float wantedBottomRightBanners=4;
+  float bannersBottomRightX=width*0.52;
+  float bannersBottomRightY=height*0.586;
+  
+  while(currentBottomRightBanners<wantedBottomRightBanners){
+  rect(bannersBottomRightX, bannersBottomRightY, bannersWidth, bannersHeight);
+  bannersBottomRightY+=height*0.1;
+  currentBottomRightBanners++;
+  
+  
+  
+  }
+  }
+    
+  }
+  
+}
 }
