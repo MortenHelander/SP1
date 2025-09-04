@@ -4,7 +4,7 @@
 void setup() {
   //Billeder af flag.
   PImage russia;
-  russia=loadImage("
+  russia=loadImage("argentina.png");
   PImage saudiArabia;
   PImage egypt;
   PImage uruguay;
