@@ -1,10 +1,11 @@
-//04.05.25
+//04.09.25
 //-Påbegyndt projektet
 
-void setup() {
-  //Billeder af flag.
+//05.09.25
+//Vil forsøge at indsætte billeder af flag.
+
+//Globale 
   PImage russia;
-  russia=loadImage("argentina.png");
   PImage saudiArabia;
   PImage egypt;
   PImage uruguay;
@@ -20,6 +21,27 @@ void setup() {
   PImage iceland;
   PImage croatia;
   PImage nigeria;
+
+void setup() {
+  //Load billeder af flag.
+  russia=loadImage("russia.png");
+  saudiArabia=loadImage("saudi arabia.png");
+  egypt=loadImage("egypt.png");
+  uruguay=loadImage("uruguay.png");
+  france=loadImage("france.png");
+  australia=loadImage("australia.png");
+  peru=loadImage("peru.png.");
+  denmark=loadImage("denmark.png");
+  portugal=loadImage("portugal.png");
+  spain=loadImage("spain.png");
+  morocco=loadImage("morocco.png");
+  iran=loadImage("iran.png");
+  argentina=loadImage("argentina.png");
+  iceland=loadImage("iceland.png");
+  croatia=loadImage("croatia.png");
+  nigeria=loadImage("nigeria.png");
+  
+  
   
   size(1185, 500);
   background(#222222);
@@ -106,14 +128,28 @@ void draw() {
   bannersBottomRightY+=height*0.1;
   currentBottomRightBanners++;
   
+  //Indsæt flag øverst venstre.
+  float flagLeftX=width/50;
+  float flagLeftY=height*0.07;
+  float flagWidth=width/11.5;
+  float flagHeight=height/11.3;
+  
+  image(russia, flagLeftX, flagLeftY, flagWidth, flagHeight);
+  image(saudiArabia, flagLeftX, flagLeftY+height/10, flagWidth, flagHeight);
+  image(egypt, flagLeftX, flagLeftY+height/4.97, flagWidth, flagHeight);
+  image(uruguay, flagLeftX, flagLeftY+height/3.32, flagWidth, flagHeight);
+  
+  //Indsæt flag øverst højre.
+  //float flagLeftX
+  
+  image(
+ 
   
   
-  
-  
+  }  
+  }
   }
   }
     
   }
   
-}
-}
