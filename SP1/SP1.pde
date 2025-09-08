@@ -4,6 +4,10 @@
 //05.09.25
 //Vil forsøge at indsætte billeder af flag.
 
+//08.09.25
+//Vil indsætte de sidste flag og de farvede rektangler i enden af flagene. Løb ind i
+////problemer med at programmer ikke svarer, måske er koden for rodet.
+
 //Globale 
   PImage russia;
   PImage saudiArabia;
@@ -130,19 +134,24 @@ void draw() {
   
   //Indsæt flag øverst venstre.
   float flagLeftX=width/50;
-  float flagLeftY=height*0.07;
+  float flagTopY=height*0.07;
   float flagWidth=width/11.5;
   float flagHeight=height/11.3;
   
-  image(russia, flagLeftX, flagLeftY, flagWidth, flagHeight);
-  image(saudiArabia, flagLeftX, flagLeftY+height/10, flagWidth, flagHeight);
-  image(egypt, flagLeftX, flagLeftY+height/4.97, flagWidth, flagHeight);
-  image(uruguay, flagLeftX, flagLeftY+height/3.32, flagWidth, flagHeight);
+  image(russia, flagLeftX, flagTopY, flagWidth, flagHeight);
+  image(saudiArabia, flagLeftX, flagTopY+height/10, flagWidth, flagHeight);
+  image(egypt, flagLeftX, flagTopY+height/4.97, flagWidth, flagHeight);
+  image(uruguay, flagLeftX, flagTopY+height/3.32, flagWidth, flagHeight);
   
   //Indsæt flag øverst højre.
   //float flagLeftX
   
-  image(
+  float flagRightX=width*0.52;
+  image(france, flagRightX, flagTopY, flagWidth, flagHeight);
+  image(australia, flagRightX, flagTopY+height/10, flagWidth, flagHeight);
+  image(peru, flagRightX, flagTopY+height/4.97, flagWidth, flagHeight);
+  image(denmark, flagRightX, flagTopY+height/3.32, flagWidth, flagHeight);
+  
  
   
   
