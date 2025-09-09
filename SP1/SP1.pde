@@ -14,9 +14,16 @@
 //Færdiggør selve billedet i dag, mangler kun teksten. Hvis mere tid, vil jeg begynde
 //at lave klasser og objekter og organisere koden.
 
-//Globale variabler.
+//Global variables.
+//Colors.
 int blueText=#62D1F0;
 int yellowText=#FCFD55;
+//Banners.
+banners topLeftBanners;
+banners topRightBanners;
+banners bottomLeftBanners;
+banners bottomRightBanners;
+//Yellow and blue rects.
 yellowAndBlueRect blueRectsTopLeft;
 yellowAndBlueRect blueRectsTopRight;
 yellowAndBlueRect yellowRectsBottomLeft;
@@ -40,7 +47,7 @@ PImage croatia;
 PImage nigeria;
 
 void setup() {
-  //Load billeder af flag.
+  //Load pictures of flags.
   russia=loadImage("russia.png");
   saudiArabia=loadImage("saudi arabia.png");
   egypt=loadImage("egypt.png");
@@ -58,108 +65,73 @@ void setup() {
   croatia=loadImage("croatia.png");
   nigeria=loadImage("nigeria.png");
 
-  //Font.
+  //Fonts.
   PFont font2;
   font2=loadFont("Calibri-48.vlw");
   textFont(font2);
 
-  //Variabler.
+  //Variables.
   float yellowAndBlueRectsWidth=width*0.011;
   float yellowAndBlueRectsHeight=height*0.085;
 
-  //Initialisering af objekter.
+  //Initializing of objects.
+  //Banners.
+  topLeftBanners=new banners(width*0.02, height*0.072);
+  topRightBanners=new banners(width*0.52, height*0.072);
+  bottomLeftBanners=new banners(width*0.02, height*0.586);
+  bottomRightBanners=new banners(width*0.52, height*0.586);
+
+  //Yellow and blue rects.
   blueRectsTopLeft=new yellowAndBlueRect(color (blueText), width*0.48, height*0.072, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
   blueRectsTopRight=new yellowAndBlueRect(color(blueText), width*0.977, height*0.072, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
   yellowRectsBottomLeft=new yellowAndBlueRect(color(yellowText), width*0.48, height*0.586, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
   yellowRectsBottomRight=new yellowAndBlueRect(color(yellowText), width*0.977, height*0.586, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
 
-
-
-  //Baggrund og størrelse.
+  //Background and size.
   size(1185, 500);
   background(#222222);
 }
 
-
 void draw() {
   noLoop();
-  //Erklæringer og initialiseringer.
   noStroke();
 
-  //Blå baggrund venstre.
+  //Left background blue.
   fill(#23324C);
   rect(width/50, height/180, width*0.495, height*0.98);
 
-  //Blå baggrund højre.
+  //Right background blue.
   fill(#2C3953);
   rect(width*0.5, height/180, width*0.495, height*0.98);
 
-  //Hvid midtersøjle.
+  //Middle collum white.
   fill(#FDFEFF);
   rect(width*0.5, height/170, width*0.003, height*0.98);
 
-  //Øverste blå overskrift.
+  //Top headline blue.
   fill(blueText);
   textSize(27);
   text("GROUP A", width*0.21, height*0.05);
   text("GROUP C", width*0.7, height*0.05);
 
-  //Nederste gule overskrift.
+  //Bottom headline yellow.
   fill(yellowText);
   text("GROUP B", width*0.21, height*0.55);
   text("GROUP D", width*0.7, height*0.55);
 
-  //Hvide bannere top venstre.
-  int currentTopLeftBanners=0;
-  int wantedTopLeftBanners=4;
-  float bannersTopLeftX=width/50;
-  float bannersTopLeftY=height*0.072;
-  float bannersWidth=width*0.468;
-  float bannersHeight=height*0.085;
-  fill(255);
+  //Call objects.
+  //White banners.
+  topLeftBanners.display();
+  topRightBanners.display();
+  bottomLeftBanners.display();
+  bottomRightBanners.display();
+  //Blue and yellow rects.
+  blueRectsTopLeft.display();
+  blueRectsTopRight.display();
+  yellowRectsBottomLeft.display();
+  yellowRectsBottomRight.display();
 
-  while (currentTopLeftBanners<wantedTopLeftBanners) {
-    rect(bannersTopLeftX, bannersTopLeftY, bannersWidth, bannersHeight);
-    bannersTopLeftY+=height*0.1;
-    currentTopLeftBanners++;
-  }
-  //Hvide bannere top højre.
-  float currentTopRightBanners=0;
-  float wantedTopRightBanners=4;
-  float bannersTopRightX=width*0.52;
-  float bannersTopRightY=height*0.072;
-
-  while (currentTopRightBanners<wantedTopRightBanners) {
-    rect(bannersTopRightX, bannersTopRightY, bannersWidth, bannersHeight);
-    bannersTopRightY+=height*0.1;
-    currentTopRightBanners++;
-  }
-
-  //Hvide bannere ned venstre.
-  float currentBottomLeftBanners=0;
-  float wantedBottomLeftBanners=4;
-  float bannersBottomLefttX=width/50;
-  float bannersBottomLeftY=height*0.586;
-
-  while (currentBottomLeftBanners<wantedBottomLeftBanners) {
-    rect(bannersBottomLefttX, bannersBottomLeftY, bannersWidth, bannersHeight);
-    bannersBottomLeftY+=height*0.1;
-    currentBottomLeftBanners++;
-  }
-
-  //Hvide bannere ned højre.
-  float currentBottomRightBanners=0;
-  float wantedBottomRightBanners=4;
-  float bannersBottomRightX=width*0.52;
-  float bannersBottomRightY=height*0.586;
-
-  while (currentBottomRightBanners<wantedBottomRightBanners) {
-    rect(bannersBottomRightX, bannersBottomRightY, bannersWidth, bannersHeight);
-    bannersBottomRightY+=height*0.1;
-    currentBottomRightBanners++;
-  }
-
-  //Indsæt flag øverst venstre.
+  //Insert flags top left.
   float flagLeftX=width/50;
   float flagTopY=height*0.07;
   float flagWidth=width/11.5;
@@ -170,30 +142,29 @@ void draw() {
   image(egypt, flagLeftX, flagTopY+height/4.97, flagWidth, flagHeight);
   image(uruguay, flagLeftX, flagTopY+height/3.32, flagWidth, flagHeight);
 
-  //Indsæt flag øverst højre.
+  //Insert flags top right.
   float flagRightX=width*0.52;
   image(france, flagRightX, flagTopY, flagWidth, flagHeight);
   image(australia, flagRightX, flagTopY+height/10, flagWidth, flagHeight);
   image(peru, flagRightX, flagTopY+height/4.97, flagWidth, flagHeight);
   image(denmark, flagRightX, flagTopY+height/3.32, flagWidth, flagHeight);
 
-  //Indsæt flag nederst venstre.
+  //Insert flags bottom left.
   float flagBottomY=height*0.585;
   image(portugal, flagLeftX, flagBottomY, flagWidth, flagHeight);
   image(spain, flagLeftX, flagBottomY+height/10, flagWidth, flagHeight);
   image(morocco, flagLeftX, flagBottomY+height/4.97, flagWidth, flagHeight);
   image(iran, flagLeftX, flagBottomY+height/3.32, flagWidth, flagHeight);
 
-  //Indsæt flag højre.
+  //Insert flags bottom right.
   image(argentina, flagRightX, flagBottomY, flagWidth, flagHeight);
   image(iceland, flagRightX, flagBottomY+height/10, flagWidth, flagHeight);
   image(croatia, flagRightX, flagBottomY+height/4.97, flagWidth, flagHeight);
   image(nigeria, flagRightX, flagBottomY+height/3.32, flagWidth, flagHeight);
 
-  //Landenavne.
+  //Country names.
   fill(0);
   textSize(45);
-
 
   text("RUSSIA", width*0.12, height*0.145);
   text("SAUDI ARABIA", width*0.12, height*0.245);
@@ -214,9 +185,4 @@ void draw() {
   text("ICELAND", width*0.622, height*0.757);
   text("CROATIA", width*0.622, height*0.857);
   text("NIGERIA", width*0.622, height*0.957);
-
-  blueRectsTopLeft.display();
-  blueRectsTopRight.display();
-  yellowRectsBottomLeft.display();
-  yellowRectsBottomRight.display();
 }
