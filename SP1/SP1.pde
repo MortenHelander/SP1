@@ -19,10 +19,10 @@
 int blueText=#62D1F0;
 int yellowText=#FCFD55;
 //Banners.
-banners topLeftBanners;
-banners topRightBanners;
-banners bottomLeftBanners;
-banners bottomRightBanners;
+Banners topLeftBanners;
+Banners topRightBanners;
+Banners bottomLeftBanners;
+Banners bottomRightBanners;
 //Yellow and blue rects.
 yellowAndBlueRect blueRectsTopLeft;
 yellowAndBlueRect blueRectsTopRight;
@@ -76,10 +76,10 @@ void setup() {
 
   //Initializing of objects.
   //Banners.
-  topLeftBanners=new banners(width*0.02, height*0.072);
-  topRightBanners=new banners(width*0.52, height*0.072);
-  bottomLeftBanners=new banners(width*0.02, height*0.586);
-  bottomRightBanners=new banners(width*0.52, height*0.586);
+  topLeftBanners=new Banners(width*0.02, height*0.072);
+  topRightBanners=new Banners(width*0.52, height*0.072);
+  bottomLeftBanners=new Banners(width*0.02, height*0.586);
+  bottomRightBanners=new Banners(width*0.52, height*0.586);
 
   //Yellow and blue rects.
   blueRectsTopLeft=new yellowAndBlueRect(color (blueText), width*0.48, height*0.072, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
@@ -90,20 +90,17 @@ void setup() {
   //Background and size.
   size(1185, 500);
   background(#222222);
+  //Left background blue.
+  fill(#23324C);
+  rect(width/50, height/180, width*0.495, height*0.98);
+  //Right background blue.
+  fill(#2C3953);
+  rect(width*0.5, height/180, width*0.495, height*0.98);
 }
 
 void draw() {
   noLoop();
   noStroke();
-
-  //Left background blue.
-  fill(#23324C);
-  rect(width/50, height/180, width*0.495, height*0.98);
-
-  //Right background blue.
-  fill(#2C3953);
-  rect(width*0.5, height/180, width*0.495, height*0.98);
-
   //Middle collum white.
   fill(#FDFEFF);
   rect(width*0.5, height/170, width*0.003, height*0.98);
