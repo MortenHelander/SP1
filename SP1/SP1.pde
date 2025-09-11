@@ -96,10 +96,6 @@ void setup() {
   //Right background blue.
   fill(#2C3953);
   rect(width*0.5, height/180, width*0.495, height*0.98);
-}
-
-void draw() {
-  noLoop();
   noStroke();
   //Middle collum white.
   fill(#FDFEFF);
