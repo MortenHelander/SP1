@@ -14,11 +14,36 @@
 //Færdiggør selve billedet i dag, mangler kun teksten. Hvis mere tid, vil jeg begynde
 //at lave klasser og objekter og organisere koden.
 
+//10.09.25
+//Glemte at forklare
+//18.09.25
+
+//Glemte hvad jeg glemte at forklare ser det ud til, i dag vil jeg forsøge at oprette
+//arrays.
+
+//19.09.25
+//Lidt sløjt de sidste par gange, men i dag fik jeg endelig tilføjet et array og efter
+//lang tid fik jeg et dobbelt array til at lave mine landenavne.
+
+
+
 //Global variables.
 //Colors.
 int blueText=#62D1F0;
 int yellowText=#FCFD55;
 //Banners.
+ArrayList<Banners>whiteBanners=new ArrayList();
+String[][]countryNames={
+  {"RUSSIA", "SAUDI ARABIA", "EGYPT", "URUGUAY"},
+  {"PORTUGAL", "SPAIN", "MOROCCO", "IRAN"},
+  {"FRANCE", "AUSTRALIA", "PERU", "DENMARK"},
+  {"ARGENTINA", "ICELAND", "CROATIA", "NIGERIA"}
+};
+
+ArrayList<PImage>flags=
+
+
+
 Banners topLeftBanners;
 Banners topRightBanners;
 Banners bottomLeftBanners;
@@ -28,6 +53,8 @@ yellowAndBlueRect blueRectsTopLeft;
 yellowAndBlueRect blueRectsTopRight;
 yellowAndBlueRect yellowRectsBottomLeft;
 yellowAndBlueRect yellowRectsBottomRight;
+
+
 
 PImage russia;
 PImage saudiArabia;
@@ -129,6 +156,8 @@ void setup() {
   float flagTopY=height*0.07;
   float flagWidth=width/11.5;
   float flagHeight=height/11.3;
+  
+  
 
   image(russia, flagLeftX, flagTopY, flagWidth, flagHeight);
   image(saudiArabia, flagLeftX, flagTopY+height/10, flagWidth, flagHeight);
@@ -155,27 +184,35 @@ void setup() {
   image(croatia, flagRightX, flagBottomY+height/4.97, flagWidth, flagHeight);
   image(nigeria, flagRightX, flagBottomY+height/3.32, flagWidth, flagHeight);
 
-  //Country names.
+  insertGroupNames(countryNames);
+}
+
+
+
+
+//Country names.
+void insertGroupNames(String[][] countryNames) {
   fill(0);
   textSize(45);
-
-  text("RUSSIA", width*0.12, height*0.145);
-  text("SAUDI ARABIA", width*0.12, height*0.245);
-  text("EGYPT", width*0.12, height*0.345);
-  text("URUGUAY", width*0.12, height*0.445);
-
-  text("FRANCE", width*0.622, height*0.145);
-  text("AUSTRALIA", width*0.622, height*0.245);
-  text("PERU", width*0.622, height*0.345);
-  text("DENMARK", width*0.622, height*0.445);
-
-  text("PORTUGAL", width*0.12, height*0.657);
-  text("SPAIN", width*0.12, height*0.757);
-  text("MOROCCO", width*0.12, height*0.857);
-  text("IRAN", width*0.12, height*0.957);
-
-  text("ARGENTINA", width*0.622, height*0.657);
-  text("ICELAND", width*0.622, height*0.757);
-  text("CROATIA", width*0.622, height*0.857);
-  text("NIGERIA", width*0.622, height*0.957);
+  float xpos=0;
+  float ypos=0;
+  for (int i=0; i<countryNames.length; i++) {
+    if (i==0) {
+      xpos=width*0.12;
+      ypos=height*0.045;
+    } else if (i==1) {
+      xpos=width*0.12;
+      ypos=height*0.56;
+    } else if (i==2) {
+      xpos=width*0.622;
+      ypos=height*0.045;
+    } else if (i==3) {
+      xpos=width*0.622;
+      ypos=height*0.56;
+    }
+    for (int j=0; j<countryNames[i].length; j++) {
+      ypos+=height*0.1;
+      text(countryNames[i][j], xpos, ypos);
+    }
+  }
 }
