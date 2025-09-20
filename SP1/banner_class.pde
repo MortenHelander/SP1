@@ -1,26 +1,35 @@
 class Banners {
   //Variables.
-  color c=255;
-  float x;
-  float y;
-  float bWidth=width*0.468;
-  float bHeight=height*0.085;
-  
+  color c=255; 
+  float xpos;
+  float ypos;
+  float bWidth;
+  float bHeight;
+
+
 
   //Constructor.
-  Banners(float tempX, float tempY) {
-    x=tempX;
-    y=tempY;
-      }
-  void display(){
+  Banners(float xpos, float ypos) {
+    this.xpos=xpos;
+    this.ypos=ypos;
+    this.bWidth=width*0.468;
+    this.bHeight=height*0.085;
+  }
+
+  void display() {
     fill(c);
     noStroke();
-    int currentBanners=0;
-  int wantedBanners=4;
-    while (currentBanners<wantedBanners) {
-      rect(x, y, bWidth, bHeight);
-      y+=height*0.1;
-      currentBanners++;
+    int collums=4;
+    int rows=4;
+    float xSpacing=width*0.5;
+    float ySpacing=height*0.1;
+    for(int i=0; i<collums; i++){
+     for(int j=0; j<rows; j++){
+        float xTop=xpos+i*xSpacing;
+        float yTop=ypos+j*ySpacing;
+        rect(xTop, yTop, bWidth, bHeight);
+      }
+      
     }
   }
 }

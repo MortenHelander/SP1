@@ -25,14 +25,32 @@
 //Lidt sløjt de sidste par gange, men i dag fik jeg endelig tilføjet et array og efter
 //lang tid fik jeg et dobbelt array til at lave mine landenavne.
 
+//20.09.25
+//Fik lavet en bedre banner metode, det lykkedes mig at komme forbi det svære ved at
+//bunden starter lavere end spacingen ved at lave to objekter og så kalde dem med
+//forskellige start y værdier.
+
 
 
 //Global variables.
 //Colors.
-int blueText=#62D1F0;
+Color blueColor;
+Color yellowColor;
+
+
 int yellowText=#FCFD55;
 //Banners.
-ArrayList<Banners>whiteBanners=new ArrayList();
+Banners topLeftBanners;
+Banners topRightBanners;
+Banners bottomLeftBanners;
+Banners bottomRightBanners;
+Banners[][]banners={
+  {topLeftBanners, topRightBanners},
+  {bottomLeftBanners, bottomRightBanners}
+};
+
+String[]groupNames={"GROUP A", "GROUP C", "GROUP B", "GROUP D"};
+
 String[][]countryNames={
   {"RUSSIA", "SAUDI ARABIA", "EGYPT", "URUGUAY"},
   {"PORTUGAL", "SPAIN", "MOROCCO", "IRAN"},
@@ -40,80 +58,54 @@ String[][]countryNames={
   {"ARGENTINA", "ICELAND", "CROATIA", "NIGERIA"}
 };
 
-ArrayList<PImage>flags=
 
 
 
-Banners topLeftBanners;
-Banners topRightBanners;
-Banners bottomLeftBanners;
-Banners bottomRightBanners;
 //Yellow and blue rects.
 yellowAndBlueRect blueRectsTopLeft;
 yellowAndBlueRect blueRectsTopRight;
 yellowAndBlueRect yellowRectsBottomLeft;
 yellowAndBlueRect yellowRectsBottomRight;
 
+Flags createFlags;
+Banners bannersTop;
+Banners bannersBottom;
 
-
-PImage russia;
-PImage saudiArabia;
-PImage egypt;
-PImage uruguay;
-PImage france;
-PImage australia;
-PImage peru;
-PImage denmark;
-PImage portugal;
-PImage spain;
-PImage morocco;
-PImage iran;
-PImage argentina;
-PImage iceland;
-PImage croatia;
-PImage nigeria;
 
 void setup() {
-  //Load pictures of flags.
-  russia=loadImage("russia.png");
-  saudiArabia=loadImage("saudi arabia.png");
-  egypt=loadImage("egypt.png");
-  uruguay=loadImage("uruguay.png");
-  france=loadImage("france.png");
-  australia=loadImage("australia.png");
-  peru=loadImage("peru.png");
-  denmark=loadImage("denmark.png");
-  portugal=loadImage("portugal.png");
-  spain=loadImage("spain.png");
-  morocco=loadImage("morocco.png");
-  iran=loadImage("iran.png");
-  argentina=loadImage("argentina.png");
-  iceland=loadImage("iceland.png");
-  croatia=loadImage("croatia.png");
-  nigeria=loadImage("nigeria.png");
+  //Int color objects.
+  blueColor=new Color(98, 209, 240);
+  yellowColor=new Color(252, 253, 85);
+
+  //Int flag objects and load them.
+  createFlags=new Flags();
+  createFlags.loadFlags();
 
   //Fonts.
   PFont font2;
   font2=loadFont("Calibri-48.vlw");
   textFont(font2);
 
-  //Variables.
-  float yellowAndBlueRectsWidth=width*0.011;
-  float yellowAndBlueRectsHeight=height*0.085;
+
+
+
 
   //Initializing of objects.
   //Banners.
-  topLeftBanners=new Banners(width*0.02, height*0.072);
-  topRightBanners=new Banners(width*0.52, height*0.072);
-  bottomLeftBanners=new Banners(width*0.02, height*0.586);
-  bottomRightBanners=new Banners(width*0.52, height*0.586);
+   bannersTop=new Banners(width*0.02, height*0.072);
+   bannersBottom=new Banners(width*0.02, height*0.587);
 
-  //Yellow and blue rects.
+
+  //Variables yellow and blue rects.
+  float yellowAndBlueRectsWidth=width*0.011;
+  float yellowAndBlueRectsHeight=height*0.085;
+  //Yellow and blue rects initilazation.
+  /*
   blueRectsTopLeft=new yellowAndBlueRect(color (blueText), width*0.48, height*0.072, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
-  blueRectsTopRight=new yellowAndBlueRect(color(blueText), width*0.977, height*0.072, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
-  yellowRectsBottomLeft=new yellowAndBlueRect(color(yellowText), width*0.48, height*0.586, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
-  yellowRectsBottomRight=new yellowAndBlueRect(color(yellowText), width*0.977, height*0.586, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
-
+   blueRectsTopRight=new yellowAndBlueRect(color(blueText), width*0.977, height*0.072, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
+   yellowRectsBottomLeft=new yellowAndBlueRect(color(yellowText), width*0.48, height*0.586, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
+   yellowRectsBottomRight=new yellowAndBlueRect(color(yellowText), width*0.977, height*0.586, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
+   */
   //Background and size.
   size(1185, 500);
   background(#222222);
@@ -127,71 +119,18 @@ void setup() {
   //Middle collum white.
   fill(#FDFEFF);
   rect(width*0.5, height/170, width*0.003, height*0.98);
-
-  //Top headline blue.
-  fill(blueText);
-  textSize(27);
-  text("GROUP A", width*0.21, height*0.05);
-  text("GROUP C", width*0.7, height*0.05);
-
-  //Bottom headline yellow.
-  fill(yellowText);
-  text("GROUP B", width*0.21, height*0.55);
-  text("GROUP D", width*0.7, height*0.55);
-
-  //Call objects.
-  //White banners.
-  topLeftBanners.display();
-  topRightBanners.display();
-  bottomLeftBanners.display();
-  bottomRightBanners.display();
-  //Blue and yellow rects.
-  blueRectsTopLeft.display();
-  blueRectsTopRight.display();
-  yellowRectsBottomLeft.display();
-  yellowRectsBottomRight.display();
-
-  //Insert flags top left.
-  float flagLeftX=width/50;
-  float flagTopY=height*0.07;
-  float flagWidth=width/11.5;
-  float flagHeight=height/11.3;
-  
-  
-
-  image(russia, flagLeftX, flagTopY, flagWidth, flagHeight);
-  image(saudiArabia, flagLeftX, flagTopY+height/10, flagWidth, flagHeight);
-  image(egypt, flagLeftX, flagTopY+height/4.97, flagWidth, flagHeight);
-  image(uruguay, flagLeftX, flagTopY+height/3.32, flagWidth, flagHeight);
-
-  //Insert flags top right.
-  float flagRightX=width*0.52;
-  image(france, flagRightX, flagTopY, flagWidth, flagHeight);
-  image(australia, flagRightX, flagTopY+height/10, flagWidth, flagHeight);
-  image(peru, flagRightX, flagTopY+height/4.97, flagWidth, flagHeight);
-  image(denmark, flagRightX, flagTopY+height/3.32, flagWidth, flagHeight);
-
-  //Insert flags bottom left.
-  float flagBottomY=height*0.585;
-  image(portugal, flagLeftX, flagBottomY, flagWidth, flagHeight);
-  image(spain, flagLeftX, flagBottomY+height/10, flagWidth, flagHeight);
-  image(morocco, flagLeftX, flagBottomY+height/4.97, flagWidth, flagHeight);
-  image(iran, flagLeftX, flagBottomY+height/3.32, flagWidth, flagHeight);
-
-  //Insert flags bottom right.
-  image(argentina, flagRightX, flagBottomY, flagWidth, flagHeight);
-  image(iceland, flagRightX, flagBottomY+height/10, flagWidth, flagHeight);
-  image(croatia, flagRightX, flagBottomY+height/4.97, flagWidth, flagHeight);
-  image(nigeria, flagRightX, flagBottomY+height/3.32, flagWidth, flagHeight);
-
-  insertGroupNames(countryNames);
 }
 
+void draw() {
+  bannersTop.display();
+  bannersBottom.display();
+  createFlags.display();
+  insertCountryNames(countryNames);
+  insertGroupNames(groupNames);
+}
 
-
-
-//Country names.
-void insertGroupNames(String[][] countryNames) {
+//Method that inserts the country names.
+void insertCountryNames(String[][] countryNames) {
   fill(0);
   textSize(45);
   float xpos=0;
@@ -216,3 +155,35 @@ void insertGroupNames(String[][] countryNames) {
     }
   }
 }
+
+//Method that inserts the group names.
+void insertGroupNames(String[]groupNames) {
+  float xpos=0;
+  float ypos=0;
+  for (int i=0; i<groupNames.length; i++) {
+    if (i==0) {
+      blueColor.display();
+      xpos=width*0.21;
+      ypos=height*0.062;
+    } else if (i==1) {
+      xpos=width*0.7;
+      ypos=height*0.062;
+    } else if (i==2) {
+      yellowColor.display();
+      xpos=width*0.21;
+      ypos=height*0.55;
+    } else if (i==3) {
+      xpos=width*0.7;
+      ypos=height*0.55;
+    }
+    for (int j=0; j<groupNames.length; j++) {
+      textSize(35);
+      text(groupNames[i], xpos, ypos);
+    }
+  }
+}
+
+
+      
+      
+  
