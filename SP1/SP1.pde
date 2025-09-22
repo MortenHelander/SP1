@@ -31,23 +31,18 @@
 //forskellige start y værdier.
 
 
-
 //Global variables.
 //Colors.
 Color blueColor;
 Color yellowColor;
 
+//Flags.
+Flags createFlags;
 
-int yellowText=#FCFD55;
 //Banners.
-Banners topLeftBanners;
-Banners topRightBanners;
-Banners bottomLeftBanners;
-Banners bottomRightBanners;
-Banners[][]banners={
-  {topLeftBanners, topRightBanners},
-  {bottomLeftBanners, bottomRightBanners}
-};
+Banners bannersTop;
+Banners bannersBottom;
+
 
 String[]groupNames={"GROUP A", "GROUP C", "GROUP B", "GROUP D"};
 
@@ -67,9 +62,6 @@ yellowAndBlueRect blueRectsTopRight;
 yellowAndBlueRect yellowRectsBottomLeft;
 yellowAndBlueRect yellowRectsBottomRight;
 
-Flags createFlags;
-Banners bannersTop;
-Banners bannersBottom;
 
 
 void setup() {
@@ -81,20 +73,16 @@ void setup() {
   createFlags=new Flags();
   createFlags.loadFlags();
 
+  //Initializing of banner objects.
+  bannersTop=new Banners(width*0.02, height*0.072);
+  bannersBottom=new Banners(width*0.02, height*0.587);
+
   //Fonts.
+  PFont font1;
   PFont font2;
-  font2=loadFont("Calibri-48.vlw");
-  textFont(font2);
-
-
-
-
-
-  //Initializing of objects.
-  //Banners.
-   bannersTop=new Banners(width*0.02, height*0.072);
-   bannersBottom=new Banners(width*0.02, height*0.587);
-
+  font1=loadFont("Calibri-48.vlw");
+  font2=loadFont("Calibri-Bold-30.vlw");
+  textFont(font1);
 
   //Variables yellow and blue rects.
   float yellowAndBlueRectsWidth=width*0.011;
@@ -122,11 +110,11 @@ void setup() {
 }
 
 void draw() {
-  bannersTop.display();
-  bannersBottom.display();
-  createFlags.display();
-  insertCountryNames(countryNames);
-  insertGroupNames(groupNames);
+  bannersTop.display();            //Draws the top white banners.
+  bannersBottom.display();         //Draws the bottom white banners.
+  createFlags.display();           //Draws the pictures of flags.
+  insertCountryNames(countryNames);//Draws the country names.
+  insertGroupNames(groupNames);    //Draws the GROUP A,B,C,D.
 }
 
 //Method that inserts the country names.
@@ -171,19 +159,15 @@ void insertGroupNames(String[]groupNames) {
     } else if (i==2) {
       yellowColor.display();
       xpos=width*0.21;
-      ypos=height*0.55;
+      ypos=height*0.575;
     } else if (i==3) {
       xpos=width*0.7;
-      ypos=height*0.55;
+      ypos=height*0.575;
     }
     for (int j=0; j<groupNames.length; j++) {
-      textSize(35);
+      
+      textSize(30);
       text(groupNames[i], xpos, ypos);
     }
   }
 }
-
-
-      
-      
-  

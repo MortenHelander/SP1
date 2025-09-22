@@ -1,6 +1,6 @@
 class Banners {
   //Variables.
-  color c=255; 
+  color c=255;
   float xpos;
   float ypos;
   float bWidth;
@@ -23,13 +23,12 @@ class Banners {
     int rows=4;
     float xSpacing=width*0.5;
     float ySpacing=height*0.1;
-    for(int i=0; i<collums; i++){
-     for(int j=0; j<rows; j++){
+    for (int i=0; i<collums; i++) {
+      for (int j=0; j<rows; j++) {
         float xTop=xpos+i*xSpacing;
         float yTop=ypos+j*ySpacing;
         rect(xTop, yTop, bWidth, bHeight);
       }
-      
     }
   }
 }
