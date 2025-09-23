@@ -46,8 +46,6 @@ class Flags {
     float flagWidth=width/11.5;
     float flagHeight=height/11.3;
 
-
-
     image(russia, flagLeftX, flagTopY, flagWidth, flagHeight);
     image(saudiArabia, flagLeftX, flagTopY+height/10, flagWidth, flagHeight);
     image(egypt, flagLeftX, flagTopY+height/4.97, flagWidth, flagHeight);

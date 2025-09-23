@@ -11,6 +11,6 @@ class Color {
   }
 
   void display() {
-    fill(r,g,b);
+    fill(r, g, b);
   }
 }

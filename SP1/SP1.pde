@@ -1,37 +1,44 @@
-//04.09.25
-//-Påbegyndt projektet
+/*04.09.25
+-Påbegyndt projektet
 
-//05.09.25
-//Vil forsøge at indsætte billeder af flag.
+05.09.25
+Vil forsøge at indsætte billeder af flag.
 
-//08.09.25
-//Vil indsætte de sidste flag og de farvede rektangler i enden af flagene. Løb ind i
-//problemer med at programmer ikke svarer, måske er koden for rodet.
-//Problemet blev løst, det viste sig at være et enkelt punktum efter peru.png, der
-//var problemet.
+08.09.25
+Vil indsætte de sidste flag og de farvede rektangler i enden af flagene. Løb ind i
+problemer med at programmer ikke svarer, måske er koden for rodet.
+Problemet blev løst, det viste sig at være et enkelt punktum efter peru.png, der
+var problemet.
 
-//09.09.25
-//Færdiggør selve billedet i dag, mangler kun teksten. Hvis mere tid, vil jeg begynde
-//at lave klasser og objekter og organisere koden.
+09.09.25
+Færdiggør selve billedet i dag, mangler kun teksten. Hvis mere tid, vil jeg begynde
+at lave klasser og objekter og organisere koden.
 
-//10.09.25
-//Glemte at forklare
-//18.09.25
+10.09.25
+Glemte at forklare
+18.09.25
+Glemte hvad jeg glemte at forklare ser det ud til, i dag vil jeg forsøge at oprette
+arrays.
 
-//Glemte hvad jeg glemte at forklare ser det ud til, i dag vil jeg forsøge at oprette
-//arrays.
+19.09.25
+Lidt sløjt de sidste par gange, men i dag fik jeg endelig tilføjet et array og efter
+lang tid fik jeg et dobbelt array til at lave mine landenavne.
 
-//19.09.25
-//Lidt sløjt de sidste par gange, men i dag fik jeg endelig tilføjet et array og efter
-//lang tid fik jeg et dobbelt array til at lave mine landenavne.
+20.09.25
+Fik lavet en bedre banner metode, det lykkedes mig at komme forbi det svære ved at
+bunden starter lavere end spacingen ved at lave to objekter og så kalde dem med
+forskellige start y værdier.
 
-//20.09.25
-//Fik lavet en bedre banner metode, det lykkedes mig at komme forbi det svære ved at
-//bunden starter lavere end spacingen ved at lave to objekter og så kalde dem med
-//forskellige start y værdier.
-
+22-23.09.25
+Fik tilføjet de gule og blå rektangler ved hjælp af en pænere metode. Vigtigt at holde
+øje med om man tegner noget overhovedet i et for loop og ikke blot ændre placering. 
+*/
 
 //Global variables.
+//Fonts.
+PFont font1;
+PFont font2;
+
 //Colors.
 Color blueColor;
 Color yellowColor;
@@ -59,32 +66,31 @@ String[][]countryNames={
 };
 
 void setup() {
-  //Int color objects.
+  //Initialize objects:
+  //Color.
   blueColor=new Color(98, 209, 240);
   yellowColor=new Color(252, 253, 85);
 
-  //Initialize flag objects and load them.
+  //Flags.
   createFlags=new Flags();
   createFlags.loadFlags();
 
-  //Initializing of banner objects.
+  //Banners.
   bannersTop=new Banners(width*0.02, height*0.072);
   bannersBottom=new Banners(width*0.02, height*0.587);
-  
-  //Initializing of blueAndYellowRects.
+
+  //Yellow and blue rects.
   topRects = new yellowAndBlueRect(width*0.48, height*0.072);
   bottomRects = new yellowAndBlueRect(width*0.48, height*0.587);
 
   //Fonts.
-  PFont font1;
-  PFont font2;
   font1=loadFont("Calibri-48.vlw");
   font2=loadFont("Calibri-Bold-30.vlw");
-  textFont(font1);
 
   //Background and size.
   size(1185, 500);
   background(#222222);
+  
   //Left background blue.
   fill(#23324C);
   rect(width/50, height/180, width*0.495, height*0.98);
@@ -100,17 +106,18 @@ void setup() {
 void draw() {
   bannersTop.display();            //Draws the top white banners.
   bannersBottom.display();         //Draws the bottom white banners.
-  
+
   blueColor.display();             //Sets the color blue.
-  topRects.display();              //Draws top blue rects.  
-  
+  topRects.display();              //Draws top blue rects.
+
   yellowColor.display();           //Sets the color yellow.
   bottomRects.display();           //Draws the bottom yellow rects.
-  
+
   createFlags.display();           //Draws the pictures of flags.
-  
+
+  textFont(font1);                 //Sets font for country names.
   insertCountryNames(countryNames);//Draws the country names.
-  
+  textFont(font2);                 //Sets font for group names.
   insertGroupNames(groupNames);    //Draws the GROUP A,B,C,D.
 }
 
@@ -162,7 +169,6 @@ void insertGroupNames(String[]groupNames) {
       ypos=height*0.575;
     }
     for (int j=0; j<groupNames.length; j++) {
-      
       textSize(30);
       text(groupNames[i], xpos, ypos);
     }
