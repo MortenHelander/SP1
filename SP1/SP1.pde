@@ -43,9 +43,14 @@ Flags createFlags;
 Banners bannersTop;
 Banners bannersBottom;
 
+//Yellow and blue rects.
+yellowAndBlueRect topRects;
+yellowAndBlueRect bottomRects;
 
+//Array for group names.
 String[]groupNames={"GROUP A", "GROUP C", "GROUP B", "GROUP D"};
 
+//Double Array for country names.
 String[][]countryNames={
   {"RUSSIA", "SAUDI ARABIA", "EGYPT", "URUGUAY"},
   {"PORTUGAL", "SPAIN", "MOROCCO", "IRAN"},
@@ -53,29 +58,22 @@ String[][]countryNames={
   {"ARGENTINA", "ICELAND", "CROATIA", "NIGERIA"}
 };
 
-
-
-
-//Yellow and blue rects.
-yellowAndBlueRect blueRectsTopLeft;
-yellowAndBlueRect blueRectsTopRight;
-yellowAndBlueRect yellowRectsBottomLeft;
-yellowAndBlueRect yellowRectsBottomRight;
-
-
-
 void setup() {
   //Int color objects.
   blueColor=new Color(98, 209, 240);
   yellowColor=new Color(252, 253, 85);
 
-  //Int flag objects and load them.
+  //Initialize flag objects and load them.
   createFlags=new Flags();
   createFlags.loadFlags();
 
   //Initializing of banner objects.
   bannersTop=new Banners(width*0.02, height*0.072);
   bannersBottom=new Banners(width*0.02, height*0.587);
+  
+  //Initializing of blueAndYellowRects.
+  topRects = new yellowAndBlueRect(width*0.48, height*0.072);
+  bottomRects = new yellowAndBlueRect(width*0.48, height*0.587);
 
   //Fonts.
   PFont font1;
@@ -84,16 +82,6 @@ void setup() {
   font2=loadFont("Calibri-Bold-30.vlw");
   textFont(font1);
 
-  //Variables yellow and blue rects.
-  float yellowAndBlueRectsWidth=width*0.011;
-  float yellowAndBlueRectsHeight=height*0.085;
-  //Yellow and blue rects initilazation.
-  /*
-  blueRectsTopLeft=new yellowAndBlueRect(color (blueText), width*0.48, height*0.072, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
-   blueRectsTopRight=new yellowAndBlueRect(color(blueText), width*0.977, height*0.072, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
-   yellowRectsBottomLeft=new yellowAndBlueRect(color(yellowText), width*0.48, height*0.586, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
-   yellowRectsBottomRight=new yellowAndBlueRect(color(yellowText), width*0.977, height*0.586, yellowAndBlueRectsWidth, yellowAndBlueRectsHeight);
-   */
   //Background and size.
   size(1185, 500);
   background(#222222);
@@ -112,8 +100,17 @@ void setup() {
 void draw() {
   bannersTop.display();            //Draws the top white banners.
   bannersBottom.display();         //Draws the bottom white banners.
+  
+  blueColor.display();             //Sets the color blue.
+  topRects.display();              //Draws top blue rects.  
+  
+  yellowColor.display();           //Sets the color yellow.
+  bottomRects.display();           //Draws the bottom yellow rects.
+  
   createFlags.display();           //Draws the pictures of flags.
+  
   insertCountryNames(countryNames);//Draws the country names.
+  
   insertGroupNames(groupNames);    //Draws the GROUP A,B,C,D.
 }
 

@@ -25,9 +25,9 @@ class Banners {
     float ySpacing=height*0.1;
     for (int i=0; i<collums; i++) {
       for (int j=0; j<rows; j++) {
-        float xTop=xpos+i*xSpacing;
-        float yTop=ypos+j*ySpacing;
-        rect(xTop, yTop, bWidth, bHeight);
+        float tempx=xpos+i*xSpacing;
+        float tempy=ypos+j*ySpacing;
+        rect(tempx, tempy, bWidth, bHeight);
       }
     }
   }

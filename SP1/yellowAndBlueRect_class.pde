@@ -1,28 +1,28 @@
 class yellowAndBlueRect {
   //Variables.
-  color c;
   float x;
   float y;
-  float rWidth;
-  float rHeight;
-  int currentYellowAndBlueRects=0;
-  int wantedYellowAndBlueRects=4;
+  float rWidth=width*0.011;
+  float rHeight=height*0.085;
+  float xSpacing=width*0.498;
+  float ySpacing=height*0.1;
+  int collums=2;
+  int rows=4;
+
 
   //Constructor.
-  yellowAndBlueRect(color tempC, float tempX, float tempY, float tempWidth, float tempHeight) {
-    c=tempC;
-    x=tempX;
-    y=tempY;
-    rWidth=tempWidth;
-    rHeight=tempHeight;
+  yellowAndBlueRect(float x, float y) {
+    this.x=x;
+    this.y=y;
   }
   void display() {
-    fill(c);
     noStroke();
-    while (currentYellowAndBlueRects<wantedYellowAndBlueRects) {
-      rect(x, y, rWidth, rHeight);
-      y+=height*0.1;
-      currentYellowAndBlueRects++;
+    for (int i=0; i<collums; i++) {
+      for (int j=0; j<rows; j++) {
+        float tempx=x+i*xSpacing;
+        float tempy=y+j*ySpacing;
+        rect(tempx, tempy, rWidth, rHeight);
+      }
     }
   }
 }
